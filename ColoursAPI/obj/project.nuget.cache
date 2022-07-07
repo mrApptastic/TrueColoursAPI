@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "RQgCWnCybI7q85mcFIZHKEXk00HYBP+FdO6/6iNkxNfViGiOSZrhZdWNhRmdQeqSHqWOBQqptRAfWFN8pY4rDQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\KaptajnUha\\Desktop\\ColoursAPI\\ColoursAPI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\KaptajnUha\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\KaptajnUha\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.23\\microsoft.netcore.app.host.win-x64.3.1.23.nupkg.sha512"
+  ],
+  "logs": []
+}
