@@ -1,6 +1,6 @@
 using System;
 
-namespace ColoursAPI
+namespace TrueColoursAPI
 {
     public class WeatherForecast
     {

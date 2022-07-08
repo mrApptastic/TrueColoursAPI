@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "b019c221-dc79-41f9-ad23-854df8690ae8",
+		"name": "True Colours API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/Names?vib=21&sex=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Names"
+					],
+					"query": [
+						{
+							"key": "vib",
+							"value": "21"
+						},
+						{
+							"key": "sex",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sync",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/Sync",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"Sync"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

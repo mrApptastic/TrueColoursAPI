@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ColoursAPI": {
+    "TrueColoursAPI": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
