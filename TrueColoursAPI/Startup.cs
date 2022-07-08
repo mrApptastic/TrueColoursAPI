@@ -79,7 +79,7 @@ namespace TrueColoursAPI
                 endpoints.MapControllers();
             });
 
-            // SeedData.SeedDatabase(context);
+            SeedData.SeedDatabase(context);
         }
     }
 }
