@@ -45,7 +45,7 @@ namespace TrueColoursAPI.Migrations
 
                     b.HasIndex("TypeId");
 
-                    b.ToTable("Colours");
+                    b.ToTable("TrueColours");
                 });
 
             modelBuilder.Entity("TrueColoursAPI.Type", b =>
@@ -62,7 +62,7 @@ namespace TrueColoursAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Types");
+                    b.ToTable("TrueTypes");
                 });
 
             modelBuilder.Entity("TrueColoursAPI.Colour", b =>

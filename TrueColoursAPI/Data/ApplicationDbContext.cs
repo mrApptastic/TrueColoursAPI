@@ -12,8 +12,8 @@ namespace TrueColoursAPI.Data
             : base(options)
             { }
 
-        public DbSet<Colour> Colours { get; set; }        
-        public DbSet<Type> Types { get; set; }
+        public DbSet<Colour> TrueColours { get; set; }        
+        public DbSet<Type> TrueTypes { get; set; }
     }
 }   
 

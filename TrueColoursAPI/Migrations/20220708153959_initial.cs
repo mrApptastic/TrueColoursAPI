@@ -8,7 +8,7 @@ namespace TrueColoursAPI.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Types",
+                name: "TrueTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -18,11 +18,11 @@ namespace TrueColoursAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Types", x => x.Id);
+                    table.PrimaryKey("PK_TrueTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Colours",
+                name: "TrueColours",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -36,28 +36,28 @@ namespace TrueColoursAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Colours", x => x.Id);
+                    table.PrimaryKey("PK_TrueColours", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Colours_Types_TypeId",
+                        name: "FK_TrueColours_TrueTypes_TypeId",
                         column: x => x.TypeId,
-                        principalTable: "Types",
+                        principalTable: "TrueTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Colours_TypeId",
-                table: "Colours",
+                name: "IX_TrueColours_TypeId",
+                table: "TrueColours",
                 column: "TypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Colours");
+                name: "TrueColours");
 
             migrationBuilder.DropTable(
-                name: "Types");
+                name: "TrueTypes");
         }
     }
 }
