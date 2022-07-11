@@ -24,18 +24,11 @@ namespace TrueColoursAPI {
 
                 context.TrueTypes.Add(htmlCategory);
 
-                List<Colour> wiki = WikipediaColourHelper.ScapeWikipediaColours();
+                List<Type> wiki = WikipediaColourHelper.ScapeWikipediaColours();
 
-                var wikiCategory = new Type() {
-                    Id = 0,
-                    Name = "Wikipedia",
-                    Description = "Standard Wikipedia Colour Names",
-                    Colours = wiki
-                };
+                context.TrueTypes.AddRange(wiki);
 
-                context.TrueTypes.Add(wikiCategory);
-
-                // context.SaveChanges();
+                context.SaveChanges();
             }
         }
     }
