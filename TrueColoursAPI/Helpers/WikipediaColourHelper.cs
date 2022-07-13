@@ -7,17 +7,18 @@ using Microsoft.EntityFrameworkCore;
 using HtmlAgilityPack;
 using System.Text;
 using OfficeOpenXml;
+using TrueColoursAPI.Models;
 
 namespace TrueColoursAPI.Helpers
 {
     public class WikipediaColourHelper
     {       
-        public static List<Type> ScapeWikipediaColours() {
+        public static List<ColourType> ScapeWikipediaColours() {
             HtmlWeb web = new HtmlWeb();
             web.AutoDetectEncoding = true;
             web.OverrideEncoding = Encoding.UTF8;
 
-            var theList = new List<Type>();
+            var theList = new List<ColourType>();
 
             var site = web.Load("https://en.wikipedia.org/wiki/List_of_colors_(compact)");
 
@@ -43,7 +44,7 @@ namespace TrueColoursAPI.Helpers
                                 category = "Uncategorized (Wikipedia)";
                             }
 
-                            Type cat = theList.Find(x => x.Name == category);
+                            ColourType cat = theList.Find(x => x.Name == category);
 
                             Colour newColour = new Colour() {
                                 Id = 0,
@@ -58,7 +59,7 @@ namespace TrueColoursAPI.Helpers
                                 cat.Colours.Add(newColour);
                             } else {
 
-                                Type newCat = new Type() {
+                                ColourType newCat = new ColourType() {
                                     Id = 0,
                                     Name = category,
                                     Description = category + " from Wikipedia",

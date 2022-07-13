@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using HtmlAgilityPack;
 using System.Text;
 using OfficeOpenXml;
+using TrueColoursAPI.Models;
 
 namespace TrueColoursAPI.Helpers
 {

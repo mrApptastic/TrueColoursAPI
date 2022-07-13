@@ -7,6 +7,7 @@ using HtmlAgilityPack;
 using System.Text;
 using OfficeOpenXml;
 using System.Drawing;
+using TrueColoursAPI.Models;
 
 namespace TrueColoursAPI.Helpers
 {

@@ -19,13 +19,16 @@ namespace TrueColoursAPI.Migrations
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("TrueColoursAPI.Colour", b =>
+            modelBuilder.Entity("TrueColoursAPI.Models.Colour", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int>("Blue")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ColourTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -40,17 +43,14 @@ namespace TrueColoursAPI.Migrations
                     b.Property<int>("Red")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TypeId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("ColourTypeId");
 
                     b.ToTable("TrueColours");
                 });
 
-            modelBuilder.Entity("TrueColoursAPI.Type", b =>
+            modelBuilder.Entity("TrueColoursAPI.Models.ColourType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,11 +67,11 @@ namespace TrueColoursAPI.Migrations
                     b.ToTable("TrueTypes");
                 });
 
-            modelBuilder.Entity("TrueColoursAPI.Colour", b =>
+            modelBuilder.Entity("TrueColoursAPI.Models.Colour", b =>
                 {
-                    b.HasOne("TrueColoursAPI.Type", null)
+                    b.HasOne("TrueColoursAPI.Models.ColourType", null)
                         .WithMany("Colours")
-                        .HasForeignKey("TypeId");
+                        .HasForeignKey("ColourTypeId");
                 });
 #pragma warning restore 612, 618
         }

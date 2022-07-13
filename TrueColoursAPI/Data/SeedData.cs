@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using TrueColoursAPI.Data;
 using TrueColoursAPI.Helpers;
+using TrueColoursAPI.Models;
 
 namespace TrueColoursAPI {
 
@@ -15,7 +16,7 @@ namespace TrueColoursAPI {
 
                 List<Colour> html = HtmlColourHelper.ScapeHtmlColours();
 
-                var htmlCategory = new Type() {
+                var htmlCategory = new ColourType() {
                     Id = 0,
                     Name = "Html",
                     Description = "Standard Html Colour Names",
@@ -24,7 +25,7 @@ namespace TrueColoursAPI {
 
                 context.TrueTypes.Add(htmlCategory);
 
-                List<Type> wiki = WikipediaColourHelper.ScapeWikipediaColours();
+                List<ColourType> wiki = WikipediaColourHelper.ScapeWikipediaColours();
 
                 context.TrueTypes.AddRange(wiki);
 

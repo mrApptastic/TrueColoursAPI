@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TrueColoursAPI
+namespace TrueColoursAPI.Models
 {
-    public class Type
+   public class ColourType
    {  
        [Key]
        public int Id {get; set; }

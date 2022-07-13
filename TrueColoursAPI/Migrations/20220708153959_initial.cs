@@ -32,23 +32,23 @@ namespace TrueColoursAPI.Migrations
                     Green = table.Column<int>(nullable: false),
                     Blue = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
-                    TypeId = table.Column<int>(nullable: true)
+                    ColourTypeId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TrueColours", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TrueColours_TrueTypes_TypeId",
-                        column: x => x.TypeId,
+                        name: "FK_TrueColours_TrueTypes_ColourTypeId",
+                        column: x => x.ColourTypeId,
                         principalTable: "TrueTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TrueColours_TypeId",
+                name: "IX_TrueColours_ColourTypeId",
                 table: "TrueColours",
-                column: "TypeId");
+                column: "ColourTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

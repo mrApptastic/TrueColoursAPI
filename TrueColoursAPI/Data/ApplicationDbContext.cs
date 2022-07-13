@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TrueColoursAPI.Models;
 
 namespace TrueColoursAPI.Data
 {
@@ -13,7 +14,7 @@ namespace TrueColoursAPI.Data
             { }
 
         public DbSet<Colour> TrueColours { get; set; }        
-        public DbSet<Type> TrueTypes { get; set; }
+        public DbSet<ColourType> TrueTypes { get; set; }
     }
 }   
 

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using AutoMapper;
 using TrueColoursAPI.Helpers;
 
-namespace TrueColoursAPI
+namespace TrueColoursAPI.Models
 {
     public class Colour
     {  
