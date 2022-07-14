@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
-using AutoMapper;
 using TrueColoursAPI.Data;
 using TrueColoursAPI.Models;
 using TrueColoursAPI.Managers;
@@ -18,13 +17,11 @@ namespace TrueColoursAPI.Controllers
     public class RGBController : ControllerBase
     {
         private readonly ILogger<RGBController> _logger;
-   		private readonly IMapper _mapper;
         private readonly IColourManager _manager;
 
-        public RGBController(ILogger<RGBController> logger, IMapper mapper, IColourManager manager)
+        public RGBController(ILogger<RGBController> logger, IColourManager manager)
         {
             _logger = logger;
-            _mapper = mapper;
             _manager = manager;
         }
 
@@ -37,9 +34,9 @@ namespace TrueColoursAPI.Controllers
         [HttpGet("{red}/{green}/{blue}")]
         public async Task<ActionResult<ICollection<RGBViewModel>>> Get(int red, int green, int blue, [FromQuery]int take = 10)
         {
-            var colourList = await _manager.GetAll(red, green, blue, take);
+            var colourList = await _manager.GetNearestRGB(red, green, blue, take);
 
-            return Ok(_mapper.Map<ICollection<Colour>, ICollection<RGBViewModel>>(colourList));
+            return Ok(colourList);
         }
     }
 }

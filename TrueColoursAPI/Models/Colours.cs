@@ -20,52 +20,56 @@ namespace TrueColoursAPI.Models
 
     public class ColourViewModel
     {  
+        public string PublicId {get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }
 
-        public class RGBViewModel: ColourViewModel {
-            public string RGB { get; set; }
-        }
+    public class RGBViewModel: ColourViewModel {
+        public string RGB { get; set; }
+    }
 
-        public class HexViewModel: ColourViewModel {
-            public string Hex { get; set; }
-        }
+    public class HexViewModel: ColourViewModel {
+        public string Hex { get; set; }
+    }
 
-        public class HSLViewModel: ColourViewModel {
-            public string HSL { get; set; }
-        }
+    public class HSLViewModel: ColourViewModel {
+        public string HSL { get; set; }
+    }
 
     public class ColourProfile: Profile {
-            public ColourProfile()
-            {            
-                CreateMap<Colour, RGBViewModel>()
-                    .ForMember(dest => dest.RGB, opts => opts.MapFrom(src => String.Format("rgb({0},{1},{2})", src.Red, src.Green, src.Blue)));
+        public ColourProfile()
+        {            
+            CreateMap<Colour, RGBViewModel>()
+                .ForMember(dest => dest.PublicId, opts => opts.MapFrom(src => Converters.Base64Encode(src.Id.ToString())))
+                .ForMember(dest => dest.RGB, opts => opts.MapFrom(src => String.Format("rgb({0},{1},{2})", src.Red, src.Green, src.Blue)));
 
-                CreateMap<RGBViewModel, Colour>()
-                    .ForMember(dest => dest.Id, opts => opts.Ignore())
-                    .ForMember(dest => dest.Red, opts => opts.Ignore())
-                    .ForMember(dest => dest.Green, opts => opts.Ignore())
-                    .ForMember(dest => dest.Blue, opts => opts.Ignore());
+            CreateMap<RGBViewModel, Colour>()
+                .ForMember(dest => dest.Id, opts => opts.Ignore())
+                .ForMember(dest => dest.Red, opts => opts.Ignore())
+                .ForMember(dest => dest.Green, opts => opts.Ignore())
+                .ForMember(dest => dest.Blue, opts => opts.Ignore());
 
-                CreateMap<Colour, HexViewModel>()
-                    .ForMember(dest => dest.Hex, opts => opts.MapFrom(src => Converters.GetHexValue(src)));
+            CreateMap<Colour, HexViewModel>()
+                .ForMember(dest => dest.PublicId, opts => opts.MapFrom(src => Converters.Base64Encode(src.Id.ToString())))
+                .ForMember(dest => dest.Hex, opts => opts.MapFrom(src => Converters.GetHexValue(src)));
 
-                CreateMap<HexViewModel, Colour>()
-                    .ForMember(dest => dest.Id, opts => opts.Ignore())
-                    .ForMember(dest => dest.Red, opts => opts.Ignore())
-                    .ForMember(dest => dest.Green, opts => opts.Ignore())
-                    .ForMember(dest => dest.Blue, opts => opts.Ignore());
+            CreateMap<HexViewModel, Colour>()
+                .ForMember(dest => dest.Id, opts => opts.Ignore())
+                .ForMember(dest => dest.Red, opts => opts.Ignore())
+                .ForMember(dest => dest.Green, opts => opts.Ignore())
+                .ForMember(dest => dest.Blue, opts => opts.Ignore());
                 
-                CreateMap<Colour, HSLViewModel>()
-                    .ForMember(dest => dest.HSL, opts => opts.MapFrom(src => Converters.GetHSLValue(src)));
+            CreateMap<Colour, HSLViewModel>()
+                .ForMember(dest => dest.PublicId, opts => opts.MapFrom(src => Converters.Base64Encode(src.Id.ToString())))
+                .ForMember(dest => dest.HSL, opts => opts.MapFrom(src => Converters.GetHSLValue(src)));
 
-                CreateMap<HSLViewModel, Colour>()
-                    .ForMember(dest => dest.Id, opts => opts.Ignore())
-                    .ForMember(dest => dest.Red, opts => opts.Ignore())
-                    .ForMember(dest => dest.Green, opts => opts.Ignore())
-                    .ForMember(dest => dest.Blue, opts => opts.Ignore());
-            }
+            CreateMap<HSLViewModel, Colour>()
+                .ForMember(dest => dest.Id, opts => opts.Ignore())
+                .ForMember(dest => dest.Red, opts => opts.Ignore())
+                .ForMember(dest => dest.Green, opts => opts.Ignore())
+                .ForMember(dest => dest.Blue, opts => opts.Ignore());
+        }
     }  
 }
 
