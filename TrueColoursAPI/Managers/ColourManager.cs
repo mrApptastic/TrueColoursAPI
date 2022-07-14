@@ -34,7 +34,7 @@ namespace TrueColoursAPI.Managers
 
         public async Task<ICollection<Colour>> GetNearest(int red, int green, int blue, int take = 10)
         {
-            return await _context.TrueColours.OrderBy(n => (Math.Abs(n.Red - red) + Math.Abs(n.Green - green) + Math.Abs(n.Blue - blue))).Take(take).ToListAsync();
+            return await _context.TrueColours.Include(x => x.ColourType).OrderBy(n => (Math.Abs(n.Red - red) + Math.Abs(n.Green - green) + Math.Abs(n.Blue - blue))).Take(take).ToListAsync();
         }
 
         public async Task<ICollection<HexViewModel>> GetNearestHex(int red, int green, int blue, int take = 10)

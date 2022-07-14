@@ -16,6 +16,7 @@ namespace TrueColoursAPI.Models
         public int Green { get; set; }
         public int Blue { get; set; }
         public string Description { get; set; }
+        public ColourType ColourType { get; set; }
     }
 
     public class ColourViewModel
@@ -23,6 +24,8 @@ namespace TrueColoursAPI.Models
         public string PublicId {get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Category {get; set; }
+        public string TypeId {get; set; }
     }
 
     public class RGBViewModel: ColourViewModel {
@@ -42,6 +45,8 @@ namespace TrueColoursAPI.Models
         {            
             CreateMap<Colour, RGBViewModel>()
                 .ForMember(dest => dest.PublicId, opts => opts.MapFrom(src => Converters.Base64Encode(src.Id.ToString())))
+                .ForMember(dest => dest.TypeId, opts => opts.MapFrom(src => Converters.Base64Encode(src.ColourType.Id.ToString())))
+                .ForMember(dest => dest.Category, opts => opts.MapFrom(src => src.ColourType.Name))
                 .ForMember(dest => dest.RGB, opts => opts.MapFrom(src => String.Format("rgb({0},{1},{2})", src.Red, src.Green, src.Blue)));
 
             CreateMap<RGBViewModel, Colour>()
@@ -52,16 +57,21 @@ namespace TrueColoursAPI.Models
 
             CreateMap<Colour, HexViewModel>()
                 .ForMember(dest => dest.PublicId, opts => opts.MapFrom(src => Converters.Base64Encode(src.Id.ToString())))
+                .ForMember(dest => dest.TypeId, opts => opts.MapFrom(src => Converters.Base64Encode(src.ColourType.Id.ToString())))
+                .ForMember(dest => dest.Category, opts => opts.MapFrom(src => src.ColourType.Name))
                 .ForMember(dest => dest.Hex, opts => opts.MapFrom(src => Converters.GetHexValue(src)));
 
             CreateMap<HexViewModel, Colour>()
                 .ForMember(dest => dest.Id, opts => opts.Ignore())
                 .ForMember(dest => dest.Red, opts => opts.Ignore())
                 .ForMember(dest => dest.Green, opts => opts.Ignore())
-                .ForMember(dest => dest.Blue, opts => opts.Ignore());
+                .ForMember(dest => dest.Blue, opts => opts.Ignore())
+                .ForMember(dest => dest.ColourType, opts => opts.Ignore());
                 
             CreateMap<Colour, HSLViewModel>()
                 .ForMember(dest => dest.PublicId, opts => opts.MapFrom(src => Converters.Base64Encode(src.Id.ToString())))
+                .ForMember(dest => dest.TypeId, opts => opts.MapFrom(src => Converters.Base64Encode(src.ColourType.Id.ToString())))
+                .ForMember(dest => dest.Category, opts => opts.MapFrom(src => src.ColourType.Name))
                 .ForMember(dest => dest.HSL, opts => opts.MapFrom(src => Converters.GetHSLValue(src)));
 
             CreateMap<HSLViewModel, Colour>()

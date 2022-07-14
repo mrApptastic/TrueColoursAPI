@@ -69,7 +69,7 @@ namespace TrueColoursAPI.Migrations
 
             modelBuilder.Entity("TrueColoursAPI.Models.Colour", b =>
                 {
-                    b.HasOne("TrueColoursAPI.Models.ColourType", null)
+                    b.HasOne("TrueColoursAPI.Models.ColourType", "ColourType")
                         .WithMany("Colours")
                         .HasForeignKey("ColourTypeId");
                 });
