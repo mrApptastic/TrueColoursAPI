@@ -32,11 +32,28 @@ namespace TrueColoursAPI.Controllers
         /// <response code="200">Returns closest colours from RGB input.</response>
         /// <response code="500">The request has failed.</response>
         [HttpGet("{red}/{green}/{blue}")]
-        public async Task<ActionResult<ICollection<HSLViewModel>>> Get(int red, int green, int blue, [FromQuery]int take = 10)
+        public async Task<ActionResult<ICollection<HSLViewModel>>> Get(int red, int green, int blue, [FromQuery]int take = 10, [FromQuery]string[] category = null)
         {
-            var colourList = await _manager.GetNearestHSL(red, green, blue, take);
+            var colourList = await _manager.GetNearestHSL(red, green, blue, take, category);
 
             return Ok(colourList);
+        }
+
+        /// <summary>
+        /// Search colours with HSL formatted output.
+        /// </summary>
+        /// <remarks>Default number of results is 50 and can be changed by altering the 'take' query parameter. Parameter 'page' can be used for pagination.</remarks>
+        /// <response code="200">Returns a result set of HSL formatted output.</response>
+        /// <response code="500">The request has failed.</response>
+        [HttpPost("Search")]
+
+        public async Task<ActionResult<ICollection<HSLViewModel>>> SearchHSLColours([FromBody]ColourSearchModel searchDto, [FromQuery]int page = 1, [FromQuery]int take = 50)
+        {
+            var searchResult = await _manager.SearchHSLColours(searchDto, page, take);
+
+            Response.Headers.Add("X-Count", searchResult.count.ToString());
+
+            return Ok(searchResult.results); 
         }
     }
 }

@@ -25,7 +25,6 @@ namespace TrueColoursAPI.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string Category {get; set; }
-        public string TypeId {get; set; }
     }
 
     public class RGBViewModel: ColourViewModel {
@@ -40,12 +39,16 @@ namespace TrueColoursAPI.Models
         public string HSL { get; set; }
     }
 
+    public class ColourSearchModel {
+        public string Name { get; set; }
+        public List<string> Types { get; set; }
+    }
+
     public class ColourProfile: Profile {
         public ColourProfile()
         {            
             CreateMap<Colour, RGBViewModel>()
                 .ForMember(dest => dest.PublicId, opts => opts.MapFrom(src => Converters.Base64Encode(src.Id.ToString())))
-                .ForMember(dest => dest.TypeId, opts => opts.MapFrom(src => Converters.Base64Encode(src.ColourType.Id.ToString())))
                 .ForMember(dest => dest.Category, opts => opts.MapFrom(src => src.ColourType.Name))
                 .ForMember(dest => dest.RGB, opts => opts.MapFrom(src => String.Format("rgb({0},{1},{2})", src.Red, src.Green, src.Blue)));
 
@@ -57,7 +60,6 @@ namespace TrueColoursAPI.Models
 
             CreateMap<Colour, HexViewModel>()
                 .ForMember(dest => dest.PublicId, opts => opts.MapFrom(src => Converters.Base64Encode(src.Id.ToString())))
-                .ForMember(dest => dest.TypeId, opts => opts.MapFrom(src => Converters.Base64Encode(src.ColourType.Id.ToString())))
                 .ForMember(dest => dest.Category, opts => opts.MapFrom(src => src.ColourType.Name))
                 .ForMember(dest => dest.Hex, opts => opts.MapFrom(src => Converters.GetHexValue(src)));
 
@@ -70,7 +72,6 @@ namespace TrueColoursAPI.Models
                 
             CreateMap<Colour, HSLViewModel>()
                 .ForMember(dest => dest.PublicId, opts => opts.MapFrom(src => Converters.Base64Encode(src.Id.ToString())))
-                .ForMember(dest => dest.TypeId, opts => opts.MapFrom(src => Converters.Base64Encode(src.ColourType.Id.ToString())))
                 .ForMember(dest => dest.Category, opts => opts.MapFrom(src => src.ColourType.Name))
                 .ForMember(dest => dest.HSL, opts => opts.MapFrom(src => Converters.GetHSLValue(src)));
 

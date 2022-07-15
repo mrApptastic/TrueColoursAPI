@@ -45,7 +45,8 @@ namespace TrueColoursAPI
                 builder =>{
                     builder.AllowAnyOrigin()
                             .AllowAnyMethod()
-                            .AllowAnyHeader();
+                            .AllowAnyHeader()
+                            .WithExposedHeaders("X-Count");
                 });
             });
 
