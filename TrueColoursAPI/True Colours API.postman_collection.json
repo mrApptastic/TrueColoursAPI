@@ -1,10 +1,303 @@
 {
 	"info": {
-		"_postman_id": "b019c221-dc79-41f9-ad23-854df8690ae8",
+		"_postman_id": "92331027-2b41-4279-b3b7-61501821dc3c",
 		"name": "True Colours API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		
+		{
+			"name": "ColourType",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/ColourType",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"ColourType"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Hex",
+			"item": [
+				{
+					"name": "Get Nearest Colour",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/Hex/:red/:green/:blue?take=10&category=MQ==",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"Hex",
+								":red",
+								":green",
+								":blue"
+							],
+							"query": [
+								{
+									"key": "take",
+									"value": "10"
+								},
+								{
+									"key": "category",
+									"value": "MQ=="
+								}
+							],
+							"variable": [
+								{
+									"key": "red",
+									"value": "22"
+								},
+								{
+									"key": "green",
+									"value": "22"
+								},
+								{
+									"key": "blue",
+									"value": "22"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"pink\",\r\n  \"types\": [\r\n    \"MQ==\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/Hex/Search?page=1&take=50",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"Hex",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "take",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HSL",
+			"item": [
+				{
+					"name": "Get Nearest Colour",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/HSL/:red/:green/:blue?take=10&category=MQ==",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"HSL",
+								":red",
+								":green",
+								":blue"
+							],
+							"query": [
+								{
+									"key": "take",
+									"value": "10"
+								},
+								{
+									"key": "category",
+									"value": "MQ=="
+								}
+							],
+							"variable": [
+								{
+									"key": "red",
+									"value": "22"
+								},
+								{
+									"key": "green",
+									"value": "22"
+								},
+								{
+									"key": "blue",
+									"value": "22"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"pink\",\r\n  \"types\": [\r\n    \"MQ==\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/HSL/Search?page=1&take=50",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"HSL",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "take",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RGB",
+			"item": [
+				{
+					"name": "Get Nearest Colour",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/RGB/:red/:green/:blue?take=10&category=MQ==",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"RGB",
+								":red",
+								":green",
+								":blue"
+							],
+							"query": [
+								{
+									"key": "take",
+									"value": "10"
+								},
+								{
+									"key": "category",
+									"value": "MQ=="
+								}
+							],
+							"variable": [
+								{
+									"key": "red",
+									"value": "33"
+								},
+								{
+									"key": "green",
+									"value": "33"
+								},
+								{
+									"key": "blue",
+									"value": "33"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"pink\",\r\n  \"types\": [\r\n    \"MQ==\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/RGB/Search?page=1&take=50",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"RGB",
+								"Search"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "take",
+									"value": "50"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
 	]
 }
