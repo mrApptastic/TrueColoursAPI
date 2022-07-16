@@ -91,15 +91,16 @@ namespace TrueColoursAPI.Migrations
                     b.Property<int>("Action")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ColourId")
-                        .HasColumnType("int");
+                    b.Property<string>("Colour")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("ColourType")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int?>("SyncLogId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ColourId");
 
                     b.HasIndex("SyncLogId");
 
@@ -115,10 +116,6 @@ namespace TrueColoursAPI.Migrations
 
             modelBuilder.Entity("TrueColoursAPI.Models.SyncLogDetail", b =>
                 {
-                    b.HasOne("TrueColoursAPI.Models.Colour", "Colour")
-                        .WithMany()
-                        .HasForeignKey("ColourId");
-
                     b.HasOne("TrueColoursAPI.Models.SyncLog", null)
                         .WithMany("Details")
                         .HasForeignKey("SyncLogId");

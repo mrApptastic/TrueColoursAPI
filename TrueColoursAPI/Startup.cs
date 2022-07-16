@@ -30,6 +30,7 @@ namespace TrueColoursAPI
         {
             services.AddScoped<IColourManager, ColourManager>();
             services.AddScoped<IColourTypeManager, ColourTypeManager>();
+            services.AddScoped<ISyncManager, SyncManager>();
 
             services.AddAutoMapper(typeof(Startup));
             

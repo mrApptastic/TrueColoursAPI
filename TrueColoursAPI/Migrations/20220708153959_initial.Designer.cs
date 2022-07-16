@@ -67,11 +67,60 @@ namespace TrueColoursAPI.Migrations
                     b.ToTable("TrueTypes");
                 });
 
+            modelBuilder.Entity("TrueColoursAPI.Models.SyncLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TrueSyncLogs");
+                });
+
+            modelBuilder.Entity("TrueColoursAPI.Models.SyncLogDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("Action")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Colour")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("ColourType")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int?>("SyncLogId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SyncLogId");
+
+                    b.ToTable("TrueSyncLogDetails");
+                });
+
             modelBuilder.Entity("TrueColoursAPI.Models.Colour", b =>
                 {
                     b.HasOne("TrueColoursAPI.Models.ColourType", "ColourType")
                         .WithMany("Colours")
                         .HasForeignKey("ColourTypeId");
+                });
+
+            modelBuilder.Entity("TrueColoursAPI.Models.SyncLogDetail", b =>
+                {
+                    b.HasOne("TrueColoursAPI.Models.SyncLog", null)
+                        .WithMany("Details")
+                        .HasForeignKey("SyncLogId");
                 });
 #pragma warning restore 612, 618
         }

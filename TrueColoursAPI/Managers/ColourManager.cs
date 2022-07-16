@@ -49,7 +49,10 @@ namespace TrueColoursAPI.Managers
                     }
                 }
                 
-                query = query.Where(x => types.Contains(x.ColourType.Id));
+                if (types.Count() > 0) {
+                    query = query.Where(x => types.Contains(x.ColourType.Id));
+                }
+                
             }
 
             return await query.OrderBy(n => (Math.Abs(n.Red - red) + Math.Abs(n.Green - green) + Math.Abs(n.Blue - blue))).Take(take).ToListAsync();
@@ -70,7 +73,9 @@ namespace TrueColoursAPI.Managers
                     }
                 }
                 
-                query = query.Where(x => types.Contains(x.ColourType.Id));
+                if (types.Count() > 0) {
+                    query = query.Where(x => types.Contains(x.ColourType.Id));
+                }
             }
 
             if (searchDto.Name != null) {

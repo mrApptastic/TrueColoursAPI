@@ -20,7 +20,8 @@ namespace TrueColoursAPI.Models
        [Key]
        public int Id {get; set; }
        public SyncAction Action { get; set; }
-       public Colour Colour { get; set; }
+       public string Colour { get; set; }
+       public string ColourType { get; set; }
    }
 
    public enum SyncType
