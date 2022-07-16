@@ -12,9 +12,15 @@ namespace TrueColoursAPI.Helpers
 {
     public class SyncHelper
     {       
-        public static List<ColourType> SyncTypesAndColours()
+        public static (List<ColourType> data, SyncLog log) SyncTypesAndColours()
         {
             List<ColourType> theList = new List<ColourType>();
+            SyncLog theLog = new SyncLog() {
+                Id = 0,
+                Time = DateTime.Now,
+                Type = SyncType.Manual,
+                Details = new List<SyncLogDetail>()
+            };
 
             List<Colour> werners = WernersHelper.GetWernersColours();
 
@@ -42,7 +48,18 @@ namespace TrueColoursAPI.Helpers
 
             theList.AddRange(wiki);
 
-            return theList;
+            foreach(ColourType cat in theList) {
+                foreach (Colour col in cat.Colours) {
+                    theLog.Details.Add(new SyncLogDetail() {
+                        Id = 0,
+                        Action = SyncAction.Added,
+                        Colour = col.Name,
+                        ColourType = cat.Name
+                    });
+                }
+            }
+
+            return (theList, theLog);
         }   
 
     }

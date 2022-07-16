@@ -29,9 +29,13 @@ namespace TrueColoursAPI.Managers
 
         public async Task SyncAll()
         {
-            List<ColourType> theList = SyncHelper.SyncTypesAndColours();
+            var syncResult = SyncHelper.SyncTypesAndColours();
+            
+            List<ColourType> theList = syncResult.data;
 
             _context.TrueTypes.AddRange(theList);
+
+            _context.TrueSyncLogs.Add(syncResult.log);
 
             await _context.SaveChangesAsync();
         }   

@@ -14,11 +14,15 @@ namespace TrueColoursAPI {
                     && context.Database.GetPendingMigrations().Count() == 0
                     && context.TrueColours.Count() == 0) {
 
-                List<ColourType> theList = SyncHelper.SyncTypesAndColours();
+            var syncResult = SyncHelper.SyncTypesAndColours();
+            
+            List<ColourType> theList = syncResult.data;
 
-                context.TrueTypes.AddRange(theList);
+            context.TrueTypes.AddRange(theList);
 
-                context.SaveChanges();
+            context.TrueSyncLogs.Add(syncResult.log);
+
+            context.SaveChanges();
             }
         }
     }
