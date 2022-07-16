@@ -28,20 +28,20 @@ namespace TrueColoursAPI.Helpers
         }     
     }
 
-    // private class PizzaObject {
+    private class PizzaObject {
 
-    // }https://en.wikipedia.org/wiki/List_of_colors:_A%E2%80%93F
+    }
 
-    // private class PizzaItem {
-    //     public string Name { get; set; }
-    //     public string Hex { get; set; }
-    //     public PizzaColour Rgb { get; set; }    
-    // }
+    private class PizzaItem {
+        public string Name { get; set; }
+        public string Hex { get; set; }
+        public PizzaColour Rgb { get; set; }    
+    }
 
-    // private class PizzaColour {
-    //     public int R { get; set; }
-    //     public int G { get; set; }
-    //     public int B { get; set; }
-    // }
+    private class PizzaColour {
+        public int R { get; set; }
+        public int G { get; set; }
+        public int B { get; set; }
+    }
 
 }
