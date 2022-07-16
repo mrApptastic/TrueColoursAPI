@@ -15,6 +15,8 @@ namespace TrueColoursAPI.Data
 
         public DbSet<Colour> TrueColours { get; set; }        
         public DbSet<ColourType> TrueTypes { get; set; }
+        public DbSet<SyncLog> TrueSyncLogs { get; set; }
+        public DbSet<SyncLogDetail> TrueSyncLogDetails { get; set; }
     }
 }   
 
