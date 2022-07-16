@@ -28,17 +28,17 @@ namespace TrueColoursAPI.Helpers
         }     
     }
 
-    private class PizzaObject {
+    public class PizzaObject {
 
     }
 
-    private class PizzaItem {
+    public class PizzaItem {
         public string Name { get; set; }
         public string Hex { get; set; }
         public PizzaColour Rgb { get; set; }    
     }
 
-    private class PizzaColour {
+    public class PizzaColour {
         public int R { get; set; }
         public int G { get; set; }
         public int B { get; set; }
