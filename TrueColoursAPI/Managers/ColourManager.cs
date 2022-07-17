@@ -42,7 +42,13 @@ namespace TrueColoursAPI.Managers
 
             if (categoryList != null) {
                 foreach (string category in categoryList) {
-                    int.TryParse(Converters.Base64Decode(category), out int typeId);
+                    string baseValue = "";
+                    
+                    try {
+                        baseValue = Converters.Base64Decode(category);
+                    } catch {}
+                    
+                    int.TryParse(baseValue, out int typeId);
 
                     if (typeId > 0) {
                         types.Add(typeId);
@@ -66,7 +72,13 @@ namespace TrueColoursAPI.Managers
 
             if (searchDto.Types != null) {
                 foreach (string category in searchDto.Types) {
-                    int.TryParse(Converters.Base64Decode(category), out int typeId);
+                    string baseValue = "";
+                    
+                    try {
+                        baseValue = Converters.Base64Decode(category);
+                    } catch {}
+                    
+                    int.TryParse(baseValue, out int typeId);
 
                     if (typeId > 0) {
                         types.Add(typeId);
