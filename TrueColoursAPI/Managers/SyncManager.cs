@@ -29,7 +29,19 @@ namespace TrueColoursAPI.Managers
 
         public async Task SyncAll()
         {
-            var syncResult = SyncHelper.SyncTypesAndColours();
+            var lastLog = await _context.TrueSyncLogs.OrderBy(x => x.Time).LastOrDefaultAsync();
+
+            if (lastLog != null) 
+            {
+                double lastSync = DateTime.Now.Subtract(lastLog.Time).TotalMinutes;
+
+                if (lastSync < 15) {
+                    string msg = String.Format("It has only been {0} minutes since the last time the data was synced. Try again in {1} minutes.", (int)lastSync, (int)(15 - lastSync));
+                    throw new Exception(msg);
+                }                //  
+            }
+
+            var syncResult = SyncHelper.SyncTypesAndColours(await _context.TrueTypes.Include(x => x.Colours).ToListAsync());
             
             List<ColourType> theList = syncResult.data;
 

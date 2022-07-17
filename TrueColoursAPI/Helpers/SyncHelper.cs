@@ -12,13 +12,14 @@ namespace TrueColoursAPI.Helpers
 {
     public class SyncHelper
     {       
-        public static (List<ColourType> data, SyncLog log) SyncTypesAndColours()
+        public static (List<ColourType> data, SyncLog log) SyncTypesAndColours(List<ColourType> currentList = null)
         {
             List<ColourType> theList = new List<ColourType>();
+
             SyncLog theLog = new SyncLog() {
                 Id = 0,
                 Time = DateTime.Now,
-                Type = SyncType.Manual,
+                Type = currentList != null ? SyncType.Auto : SyncType.Migration,
                 Details = new List<SyncLogDetail>()
             };
 
@@ -47,6 +48,24 @@ namespace TrueColoursAPI.Helpers
             List<ColourType> wiki = WikipediaColourHelper.ScapeWikipediaColours();
 
             theList.AddRange(wiki);
+
+            if (currentList != null) {
+                foreach (ColourType typ in currentList) {
+                    ColourType refTyp = theList.Find(x => x.Name == typ.Name);
+
+                    foreach (Colour clr in typ.Colours) {
+                        Colour refClr = refTyp.Colours.Where(x => x.Name == clr.Name).FirstOrDefault();
+
+                        if (refClr != null) {
+                            refTyp.Colours.Remove(refClr);
+                        }
+                    }
+
+                    if (refTyp.Colours.Count() == 0) {
+                        theList.Remove(refTyp);
+                    }
+                }
+            }
 
             foreach(ColourType cat in theList) {
                 foreach (Colour col in cat.Colours) {
