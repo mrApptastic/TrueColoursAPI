@@ -16,9 +16,11 @@ namespace TrueColoursAPI.Managers
         Task<ICollection<HexViewModel>> GetNearestHex(int red, int green, int blue, int take = 10, string[] categoryList = null);
         Task<ICollection<HSLViewModel>> GetNearestHSL(int red, int green, int blue, int take = 10, string[] categoryList = null);
         Task<ICollection<RGBViewModel>> GetNearestRGB(int red, int green, int blue, int take = 10, string[] categoryList = null);
+        Task<ICollection<CMYKViewModel>> GetNearestCMYK(int red, int green, int blue, int take = 10, string[] categoryList = null);
         Task<(ICollection<HexViewModel> results, int count)> SearchHexColours(ColourSearchModel searchDto, int page = 1, int take = 50);
         Task<(ICollection<HSLViewModel> results, int count)> SearchHSLColours(ColourSearchModel searchDto, int page = 1, int take = 50);
         Task<(ICollection<RGBViewModel> results, int count)> SearchRGBColours(ColourSearchModel searchDto, int page = 1, int take = 50);
+        Task<(ICollection<CMYKViewModel> results, int count)> SearchCMYKColours(ColourSearchModel searchDto, int page = 1, int take = 50);
 	}
 
     public class ColourManager: IColourManager
@@ -119,6 +121,12 @@ namespace TrueColoursAPI.Managers
             return _mapper.Map<ICollection<Colour>, ICollection<RGBViewModel>>(colourList);
         }
 
+        public async Task<ICollection<CMYKViewModel>> GetNearestCMYK(int red, int green, int blue, int take = 10, string[] categoryList = null)
+        {
+            var colourList = await GetNearest(red, green, blue, take, categoryList);
+            return _mapper.Map<ICollection<Colour>, ICollection<CMYKViewModel>>(colourList);
+        }
+
         public async Task<(ICollection<HexViewModel> results, int count)> SearchHexColours(ColourSearchModel searchDto, int page = 1, int take = 50)
         {
             var searchResult = await Search(searchDto, page, take);
@@ -138,6 +146,13 @@ namespace TrueColoursAPI.Managers
             var searchResult = await Search(searchDto, page, take);
 
             return (_mapper.Map<ICollection<Colour>, ICollection<RGBViewModel>>(searchResult.results), searchResult.count); 
+        }
+
+        public async Task<(ICollection<CMYKViewModel> results, int count)> SearchCMYKColours(ColourSearchModel searchDto, int page = 1, int take = 50)
+        {
+            var searchResult = await Search(searchDto, page, take);
+
+            return (_mapper.Map<ICollection<Colour>, ICollection<CMYKViewModel>>(searchResult.results), searchResult.count); 
         }
     }
 }

@@ -70,6 +70,38 @@ namespace TrueColoursAPI.Helpers
             return "hsl(" + H + "%, " + S + "%, " + L + "%)";
         }
 
+        public static string GetCMYKValue(Colour colour)
+        {
+            float c;
+            float m;
+            float y;
+            float k;
+            float rf;
+            float gf;
+            float bf;
+
+            rf = colour.Red / 255F;
+            gf = colour.Green / 255F;
+            bf = colour.Blue / 255F;
+
+            k = ClampCmyk(1 - Math.Max(Math.Max(rf, gf), bf));
+            c = ClampCmyk((1 - rf - k) / (1 - k));
+            m = ClampCmyk((1 - gf - k) / (1 - k));
+            y = ClampCmyk((1 - bf - k) / (1 - k));
+
+            return String.Format("CMYK({0},{1},{2},{3})", c, m, y, k);
+        }
+
+        private static float ClampCmyk(float value)
+        {
+            if (value < 0 || float.IsNaN(value))
+            {
+                value = 0;
+            }
+
+            return value;
+        }
+
 
     }
 

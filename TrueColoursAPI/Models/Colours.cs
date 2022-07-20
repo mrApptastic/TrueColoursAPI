@@ -39,6 +39,11 @@ namespace TrueColoursAPI.Models
         public string HSL { get; set; }
     }
 
+    public class CMYKViewModel: ColourViewModel {
+        public string CMYK { get; set; }
+    }
+
+
     public class ColourSearchModel {
         public string Name { get; set; }
         public List<string> Types { get; set; }
@@ -76,6 +81,17 @@ namespace TrueColoursAPI.Models
                 .ForMember(dest => dest.HSL, opts => opts.MapFrom(src => Converters.GetHSLValue(src)));
 
             CreateMap<HSLViewModel, Colour>()
+                .ForMember(dest => dest.Id, opts => opts.Ignore())
+                .ForMember(dest => dest.Red, opts => opts.Ignore())
+                .ForMember(dest => dest.Green, opts => opts.Ignore())
+                .ForMember(dest => dest.Blue, opts => opts.Ignore());
+
+            CreateMap<Colour, CMYKViewModel>()
+                .ForMember(dest => dest.PublicId, opts => opts.MapFrom(src => Converters.Base64Encode(src.Id.ToString())))
+                .ForMember(dest => dest.Category, opts => opts.MapFrom(src => src.ColourType.Name))
+                .ForMember(dest => dest.CMYK, opts => opts.MapFrom(src => Converters.GetCMYKValue(src)));
+
+            CreateMap<CMYKViewModel, Colour>()
                 .ForMember(dest => dest.Id, opts => opts.Ignore())
                 .ForMember(dest => dest.Red, opts => opts.Ignore())
                 .ForMember(dest => dest.Green, opts => opts.Ignore())
