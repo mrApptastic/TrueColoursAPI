@@ -2,13 +2,13 @@
   <div class="container-fluid">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link" href="#upload">Upload</a>
+        <a class="nav-link" href="#upload">From Upload</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#search">Search</a>
+        <a class="nav-link" href="#slider">From Sliders</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#slider">Slider</a>
+        <a class="nav-link" href="#wheel">From Colour Wheel</a>
       </li>
     </ul>
   </div>
@@ -23,4 +23,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+div.container-fluid {
+  top: 0;
+  position: sticky;
+  background: white;
+  z-index: 1;
+}
+</style>
