@@ -98,7 +98,7 @@ namespace TrueColoursAPI.Managers
 
             int count = await query.CountAsync();
 
-            var results = await query.OrderBy(x => x.Name).Skip((page -1) * 50).Take(take).ToListAsync();
+            var results = await query.OrderBy(x => x.Name).Skip((page -1) * take).Take(take).ToListAsync();
 
             return (results, count);     
         }
