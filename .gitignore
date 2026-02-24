@@ -3,5 +3,6 @@ TrueColoursAPI/obj/**
 TrueColoursAPI.Tests/bin/**
 TrueColoursAPI.Tests/obj/**
 TrueColoursDemoApp/node_modules/**
+TrueColoursDemoApp/dist/**
 *.sqlite
 *.db
