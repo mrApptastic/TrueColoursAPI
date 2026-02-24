@@ -10,9 +10,11 @@ namespace TrueColoursAPI {
     public class SeedData {
 
         public static void SeedDatabase(ApplicationDbContext context) {            
-            if (context.Database.GetMigrations().Count() > 0
-                    && context.Database.GetPendingMigrations().Count() == 0
-                    && context.TrueColours.Count() == 0) {
+            context.Database.EnsureCreated();
+
+            if (context.TrueColours.Any()) {
+                return;
+            }
 
             var syncResult = SyncHelper.SyncTypesAndColours();
             
@@ -23,7 +25,6 @@ namespace TrueColoursAPI {
             context.TrueSyncLogs.Add(syncResult.log);
 
             context.SaveChanges();
-            }
         }
     }
 }

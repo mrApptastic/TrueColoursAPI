@@ -1,2 +1,7 @@
 TrueColoursAPI/bin/**
 TrueColoursAPI/obj/**
+TrueColoursAPI.Tests/bin/**
+TrueColoursAPI.Tests/obj/**
+TrueColoursDemoApp/node_modules/**
+*.sqlite
+*.db
