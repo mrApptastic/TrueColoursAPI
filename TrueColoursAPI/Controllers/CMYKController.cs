@@ -51,7 +51,7 @@ namespace TrueColoursAPI.Controllers
         {
             var searchResult = await _manager.SearchCMYKColours(searchDto, page, take);
 
-            Response.Headers.Add("X-Count", searchResult.count.ToString());
+            Response.Headers["X-Count"] = searchResult.count.ToString();
 
             return Ok(searchResult.results); 
         }

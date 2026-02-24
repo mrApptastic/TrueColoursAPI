@@ -2,11 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using Microsoft.EntityFrameworkCore;
-using HtmlAgilityPack;
 using System.Text;
-using OfficeOpenXml;
-using System.Drawing;
 using TrueColoursAPI.Models;
 
 namespace TrueColoursAPI.Helpers
@@ -24,8 +20,7 @@ namespace TrueColoursAPI.Helpers
         }
 
         public static string GetHexValue(Colour colour) {
-            Color rgb = Color.FromArgb(colour.Red, colour.Green, colour.Blue);
-            return "#" + rgb.R.ToString("X2") + rgb.G.ToString("X2") + rgb.B.ToString("X2");
+            return "#" + colour.Red.ToString("X2") + colour.Green.ToString("X2") + colour.Blue.ToString("X2");
         }
 
         public static string GetHSLValue(Colour colour) {

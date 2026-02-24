@@ -12,6 +12,7 @@
   <UploadView />
   <SliderView />
   <ColorWheelView />
+  </div>
 </template>
 
 <script>

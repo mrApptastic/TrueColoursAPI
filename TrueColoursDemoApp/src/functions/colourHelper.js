@@ -20,7 +20,7 @@ export async function getNearestColour(red, green, blue) {
 
 export async function searchColours(searchText, page, take, types) {
   const response = await fetch(
-    '"https://colours.tesj.dk/Hex/Search?page=' + page + '&take=' + take + '"',
+    'https://colours.tesj.dk/Hex/Search?page=' + page + '&take=' + take,
     {
       credentials: 'include',
       method: 'POST',
@@ -39,9 +39,9 @@ export async function searchColours(searchText, page, take, types) {
   return response.json();
 }
 
-export async function searchColours2(searchText, page, take, types) {
+export async function searchColours2(searchText, page, take) {
   const response = await fetch(
-    '"https://colours.tesj.dk/Hex/Search?page=' + page + '&take=' + take + '"',
+    'https://colours.tesj.dk/Hex/Search?page=' + page + '&take=' + take,
     {
       credentials: 'include',
       method: 'POST',

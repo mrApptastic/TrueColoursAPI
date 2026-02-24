@@ -2,11 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using Microsoft.EntityFrameworkCore;
-using HtmlAgilityPack;
 using System.Text;
-using OfficeOpenXml;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 
 namespace TrueColoursAPI.Helpers
@@ -22,7 +20,7 @@ namespace TrueColoursAPI.Helpers
 
             if (response.IsSuccessStatusCode)
             {
-                product = await response.Content.ReadAsAsync<Object>();
+                product = await response.Content.ReadFromJsonAsync<Object>();
             }
             return product;
         }     
